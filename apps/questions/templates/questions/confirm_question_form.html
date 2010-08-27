@@ -5,8 +5,12 @@
 
 {% block content %}
 <div class="confirm-question">
-  <h2>{{ _('Please confirm that you entered the question below.')}}</h2>
+  <h2>{{ _('Thanks for confirming your email address.')}}</h2>
+  <h3>{{ _('Please confirm below that you submitted the following question:')}}</h3>
   <h3>{{ question.title }}</h3>
+  <h3>{{ _('Once you do so, your question will be publicly available on the Firefox
+  Support Forums for our community volunteers to help answer.  We'll email you
+  whenever someone responds.')}}</h3>
   <form action="" method="post">
     {{ csrf() }}
     <div class="submit-or-cancel">

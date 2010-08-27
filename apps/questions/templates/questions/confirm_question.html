@@ -5,8 +5,13 @@
 
 {% block content %}
 <div class="confirm-question">
-  <h2>{{ _('Please confirm your question.')}}</h2>
-  <p>{{ _('An email has been sent to the address below:') }}</p>
+  <h2>{{ _('Almost done!')}}</h2>
+  <p>{{ _('Before your question is posted, you'll need to confirm your email
+  address via the link we just sent to the address below. This way we know
+  we'll be able to get back to you when someone in our community has an answer
+  to your question.') }}</p>
   <p><strong>{{ question.creator.email }}</strong></p>
+  <p>{{ _('Once your email is confirmed, your question will show up on the site so our
+  community of volunteers can help you.') }}</p>
 </div>
 {% endblock %}
