@@ -62,6 +62,8 @@ def build_answer_notification(answer):
 @task
 def build_solution_notification(question):
     ct = ContentType.objects.get_for_model(question)
+    # Cache solution.question as a workaround for replication lag (bug 585029)
+    question.solution.question = question
 
     subject = _('Solution to: %s') % question.title
     t = loader.get_template('questions/email/solution.ltxt')
@@ -80,12 +82,13 @@ def build_solution_notification(question):
 @task
 def send_confirmation_email(question):
     log.debug('Sending confirmation email for question (id=%s)' % question.id)
-    from_address = 'notifications@support.mozilla.com'
-    subject = _('Please confirm your question: %s') % question.title
+    from_address = 'Firefox Support Community <notifications@support.mozilla.com>'
+    subject = _('Please confirm your email address')
     t = loader.get_template('questions/email/confirm_question.ltxt')
     url = reverse('questions.confirm_form',
                   args=[question.id, question.confirmation_id])
     content = t.render(Context({'question_title': question.title,
                                 'confirm_url': url,
-                                'host': Site.objects.get_current().domain}))
+                                'host': Site.objects.get_current().domain,
+                                'question_url': question.get_absolute_url()}))
     send_mail(subject, content, from_address, [question.creator.email])

@@ -1,7 +1,37 @@
 {% load i18n %}
 {# L10n: This is an email. Whitespace matters! #}{% autoescape off %}
-{% blocktrans %}Please confirm your question ({{ question_title }}) at the link below:
+{% blocktrans %}Thanks for asking your question
+
+({{ question_title }})
+
+in the Firefox Support forums! Before it's posted and visible to
+our community of volunteers, you'll need to confirm your email by
+clicking on the link below and then following the instructions on
+the page:
 
 https://{{ host }}{{ confirm_url }}
+
+(If clicking the above link does not work, copy and paste it into
+your browser's location bar.)
+
+By the way, did you know that most of the questions on
+https://support.mozilla.com are answered by Firefox users just like
+you? If you're experienced with Firefox, or just curious about how
+you can be involved, we'd love for you to help! For more info on
+how to get started, please visit:
+http://support.mozilla.com/contribute
+
+Please note that this message was sent from an address that can't
+accept incoming email. You can put replies and followup to your
+question in the support forum thread you started:
+
+https://{{ host }}{{ question_url }}
+
+(This link will not work until you have confirmed your email
+address above.)
+
+Thanks again!
+
+The Firefox Support Community
 {% endblocktrans %}
 {% endautoescape %}
